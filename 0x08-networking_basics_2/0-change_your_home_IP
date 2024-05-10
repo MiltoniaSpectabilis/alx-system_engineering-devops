@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# This script changes the localhost and facebook.com IP addresses
 
 # Copy the hosts file to a new file
 cp /etc/hosts /etc/hosts.new
