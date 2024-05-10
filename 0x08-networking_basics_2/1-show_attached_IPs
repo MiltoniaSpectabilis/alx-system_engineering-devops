@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+
+# Get the IP address of all attached interfaces
+ip -o -4 addr | awk '{print $4}' | cut -d/ -f1
+
+
