@@ -9,3 +9,6 @@ apt-get install -y nginx
 
 # Create a simple HTML page with "Hello World!"
 echo "Hello World!" > /var/www/html/index.html
+
+# Start nginx
+sudo service nginx start
