@@ -15,8 +15,8 @@ file { '/var/www/html/index.html':
 }
 
 exec {'redirect_me':
-  command  => 'sed -i ''/server_name _;/a \    location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; }'' /etc/nginx/sites-available/default'
-  provider => 'shell'
+  command  => 'sed -i ''/server_name _;/a \    location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; }'' /etc/nginx/sites-available/default',
+  provider => 'shell',
 }
 
 service { 'nginx':
