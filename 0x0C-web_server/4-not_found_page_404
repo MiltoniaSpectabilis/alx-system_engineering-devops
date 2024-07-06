@@ -5,6 +5,7 @@ apt-get update
 
 apt-get install nginx -y
 
+echo "Hello World!" > sudo /var/www/html/index.html:wq
 
 sed -i '/server_name _;/a \    location /nero { return 404 "Ceci n'\''est pas une page\\n"; }' /etc/nginx/sites-available/default
 
