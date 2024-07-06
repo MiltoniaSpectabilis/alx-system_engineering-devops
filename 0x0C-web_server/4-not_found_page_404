@@ -1,24 +1,11 @@
 #!/usr/bin/env bash
-# Installs nginx web server
+
 
 apt-get update
-apt-get install -y nginx
+
+apt-get install nginx -y
+
+
+sed -i '/server_name _;/a \    location /nero { return 404 "Ceci n'\''est pas une page\\n"; }' /etc/nginx/sites-available/default
+
 service nginx start
-mkdir /etc/nginx/html
-echo "Hello World!" > /etc/nginx/html/index.html > /dev/null
-echo "Ceci n'est pas une page" > /etc/nginx/html/404.html > dev/null
-echo "server {
-    listen 80;
-    listen [::]:80 default_server;
-    root   /etc/nginx/html;
-    index  index.html;
-    location /redirect_me {
-        return 301 https://twitter.com/Emmanue17280546;
-    }
-    error_page 404 /404.html;
-    location = /404.html{
-        root /etc/nginx/html;
-        internal;
-    }
-}" > /etc/nginx/sites-available/default
-service nginx restart
