@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# a script that configures a custom http response header
+
+sed "16a\\\t#add custom header:\n\tadd_header X-Served-By $HOSTNAME;\n" /etc/nginx/nginx.conf
