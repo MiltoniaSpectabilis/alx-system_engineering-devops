@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # a script that configures a custom http response header on a brand new Ubuntu machine
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo "Hello World!" > /var/www/html/index.html
-sudo sed -i "47a\\\tadd_header X-Served-By $(hostname);" /etc/nginx/sites-available/default
+sudo apt-get update
+sudo apt-get install nginx -y
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo sed -i '/server_name _;/a\\n\trewrite ^/redirect_me www.google.com permanent;' /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.htm
+sudo sed -i "47a\\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
 sudo service nginx restart
