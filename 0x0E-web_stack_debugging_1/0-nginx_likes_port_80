@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # fixes the server
-sed -i 's/8080/80/g' /etc/nginx/sites-available/default
-service nginx restart
+sudo sed -i 's/8080/80/g' /etc/nginx/sites-available/default
+sudo service nginx restart
