@@ -5,7 +5,7 @@ apt-get update
 
 apt-get install nginx -y
 
-echo "Ceci n'est pas une page" > sudo /var/www/html/404.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 
 sed -i '/server_name _;/a\\tlocation /redirect_me { return 301 https://www.google.com; }' /etc/nginx/sites-available/default
 
