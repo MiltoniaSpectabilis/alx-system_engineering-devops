@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
-#Configure Nginx server to have a custom 404 page that contains the string 'Ceci n'est pas une page'
+# A script that configures a custom HTTP response header on a brand new Ubuntu machine
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
+# Update and install Nginx
+sudo apt-get update
+sudo apt-get install nginx -y
 
-config="/etc/nginx/sites-available/default"
-sudo sh -c "echo 'Hello World!' > /var/www/html/index.nginx-debian.html"
+# Create custom index and 404 pages
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 
-sudo sed -i '/^}$/i \ \n\tlocation \/redirect_me {return 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;}' $config
+# Configure Nginx
+sudo sed -i '/server_name _;/a\\tlocation /redirect_me { return 301 https://www.duckduckgo.com; }' /etc/nginx/sites-available/default
+sudo sed -i '/server_name _;/a\\terror_page 404 /404.html;' /etc/nginx/sites-available/default
+sudo sed -i "/server_name _;/a\\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
 
-sudo sed -i '/^}$/i \ \n\tlocation @404 {return 404 "Ceci n'\''est pas une page\\n";}' $config
+sudo nginx -t
 
-sudo sed -i 's/=404/@404/g' $config
+# Restart Nginx
+sudo service restart nginx
 
-sudo sed -i "0,/location \/ {/s/location \/ {/&\n\t\tadd_header X-Served-By '$HOSTNAME';/" $config
-
-sudo service nginx restart
