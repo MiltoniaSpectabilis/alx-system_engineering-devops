@@ -14,8 +14,6 @@ sudo sed -i '/server_name _;/a\\tlocation /redirect_me { return 301 https://www.
 sudo sed -i '/server_name _;/a\\terror_page 404 /404.html;' /etc/nginx/sites-available/default
 sudo sed -i "/server_name _;/a\\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
 
-sudo nginx -t
-
 # Restart Nginx
 sudo service restart nginx
 
