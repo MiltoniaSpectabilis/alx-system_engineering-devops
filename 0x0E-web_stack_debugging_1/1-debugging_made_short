@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # fixes the server
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-sudo nginx
+pkill nginx
+nginx
