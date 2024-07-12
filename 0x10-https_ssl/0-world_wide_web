@@ -11,6 +11,6 @@ function www {
 	echo "The subdomain $subdomain is a $record_type record and points to $destination"
 }
 
-if [ $# -eq 2 ]; then
+if [ $# -le 2 ]; then
 	www
 fi
