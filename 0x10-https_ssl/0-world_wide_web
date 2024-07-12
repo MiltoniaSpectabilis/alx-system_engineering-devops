@@ -1,16 +1,20 @@
 #!/usr/bin/env bash
 #shellcheck disable=SC2086
 
+get_answer() {
+     subdomain=$1
+     domain=$2
 
-subdomain=$2
-domain=$1
+    record_type=$(dig $subdomain.$domain | awk '/ANSWER SECTION/ {getline; print $4}')
+    destination=$(dig $subdomain.$domain | awk '/ANSWER SECTION/ {getline; print $5}')
 
-function www {
-	record_type=$(dig $subdomain.$domain | awk '/ANSWER SECTION/ {getline; print $4}')
-	destination=$(dig $subdomain.$domain | awk '/ANSWER SECTION/ {getline; print $5}')
-	echo "The subdomain $subdomain is a $record_type record and points to $destination"
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
 }
 
-if [ $# -le 2 ]; then
-	www
+if [ $# -eq 1 ]; then
+    for sub in www lb-01 web-01 web-02; do
+        get_answer $sub $1
+    done
+elif [ $# -eq 2 ]; then
+    get_answer $2 $1
 fi
