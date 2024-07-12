@@ -7,7 +7,7 @@ sudo tee -a /etc/haproxy/haproxy.cfg << EOF
 listen myserver
     bind *:80
     balance roundrobin
-    server server1 100.25.220.64:80 check
-    server server2 100.26.233.66:80 check
+    server 382579-web-01 54.85.45.15:80 check
+    server 382579-web-02 35.175.65.117:80 check
 EOF
 sudo service haproxy restart
