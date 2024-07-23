@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# a script that runs Nginx as Nginx
+#
+# Create the nginx user
+useradd -m -s /bin/false nginx
+
+# Update the nginx configuration to run as the nginx user
+sed -i's/user www-data;/user nginx;/' /etc/nginx/nginx.conf
+
+# Update the nginx configuration to listen on port 8080 on all active IPs
+sed -i's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
+
+# Restart the nginx service to apply the changes
+service nginx restart
+
