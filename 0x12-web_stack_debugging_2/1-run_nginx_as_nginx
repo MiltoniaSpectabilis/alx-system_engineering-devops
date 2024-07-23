@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# A scrpt that runs nginx as nginx
 
 # Stop the nginx service
 sudo service nginx stop
