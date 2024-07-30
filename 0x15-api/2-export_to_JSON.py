@@ -14,14 +14,14 @@ if __name__ == "__main__":
     user_data = requests.get(f'{base_url}/users/{employee_id}').json()
     todos_data = requests.get(f'{base_url}/users/{employee_id}/todos').json()
 
-    employee_name = user_data.get('name')
+    username = user_data.get('username')
 
     tasks_list = []
     for task in todos_data:
         tasks_list.append({
             "task": task.get('title'),
             "completed": task.get('completed'),
-            "username": employee_name
+            "username": username
         })
 
     json_data = {str(employee_id): tasks_list}
