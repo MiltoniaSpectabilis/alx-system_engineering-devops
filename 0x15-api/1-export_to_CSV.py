@@ -5,6 +5,7 @@ Gather data from an API
 
 import requests
 import sys
+import csv
 
 if __name__ == "__main__":
 
@@ -25,3 +26,14 @@ if __name__ == "__main__":
     )
     for task in completed_tasks:
         print(f"\t {task.get('title')}")
+
+    csv_filename = f"{employee_id}.csv"
+    with open(csv_filename, mode='w', newline='') as csv_file:
+        csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
+        for task in todos_data:
+            csv_writer.writerow([
+                employee_id,
+                employee_name,
+                task.get('completed'),
+                task.get('title')
+            ])
