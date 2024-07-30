@@ -15,7 +15,7 @@ if __name__ == "__main__":
     user_data = requests.get(f'{base_url}/users/{employee_id}').json()
     todos_data = requests.get(f'{base_url}/users/{employee_id}/todos').json()
 
-    employee_name = user_data.get('name')
+    username = user_data.get('username')
 
     csv_filename = f"{employee_id}.csv"
     with open(csv_filename, mode='w', newline='') as csv_file:
@@ -23,7 +23,7 @@ if __name__ == "__main__":
         for task in todos_data:
             csv_writer.writerow([
                 employee_id,
-                employee_name,
+                username,
                 task.get('completed'),
                 task.get('title')
             ])
