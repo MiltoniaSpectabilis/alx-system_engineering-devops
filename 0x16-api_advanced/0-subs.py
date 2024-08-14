@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Module to query Reddit API for subscriber count."""
+"""
+Module to query Reddit API for subscriber count.
+"""
 import requests
 
 
