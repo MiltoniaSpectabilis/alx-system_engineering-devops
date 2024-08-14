@@ -6,14 +6,13 @@ import requests
 
 
 def number_of_subscribers(subreddit):
-    """Return number of subscribers for a subreddit."""
+    """Return the total number of subscribers for a given subreddit."""
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {'User-Agent': 'MyBot/1.0'}
+    headers = {
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/your_username)"
+    }
 
-    try:
-        response = requests.get(url, headers=headers, allow_redirects=False)
-        if response.status_code == 200:
-            return response.json()['data']['subscribers']
-        return 0
-    except requests.RequestException:
-        return 0
+    response = requests.get(url, headers=headers, allow_redirects=False)
+    if response.status_code == 200:
+        return response.json()['data']['subscribers']
+    return 0
