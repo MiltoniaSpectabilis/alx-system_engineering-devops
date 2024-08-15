@@ -7,7 +7,7 @@ def recurse(subreddit, hot_list=[], after=None):
     """Recursively fetch all hot post titles from a subreddit."""
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/your_username)"}
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0"}
     params = {"after": after} if after else {}
 
     response = requests.get(url, headers=headers,
