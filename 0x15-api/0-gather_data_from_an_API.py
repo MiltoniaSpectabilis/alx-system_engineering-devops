@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """This script fetches data from an API
 and displays it in specified format
 """
